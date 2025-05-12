@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Users, Award, Camera } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Eye } from "lucide-react";
 
 
 import { Instagram, Facebook, Twitter , Menu} from "lucide-react";
@@ -28,7 +30,7 @@ export default function Home() {
           <nav className="hidden md:flex space-x-8">
             <Link 
               href="#home" 
-              className="text-[#83C044] hover:text-[#83C044] transition-all duration-300 transform hover:scale-105"
+              className="text-white hover:text-[#83C044] transition-all duration-300 transform hover:scale-105"
             >
               Home
             </Link>
@@ -220,18 +222,30 @@ export default function Home() {
 
               {/* Right Column */}
               <div className="w-full md:w-1/2 order-1 md:order-2">
-                <div className="relative aspect-[4/3] max-w-[600px] mx-auto">
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-lg shadow-xl">
-                    <Image src={TeamPS} alt="Logo" width={1200} height={1200} />
+                <div className="relative max-w-[700px] mx-auto">
+                  <div className="relative">
+                    {/* Top-right green L-shaped accent with rounded corners (behind) */}
+                    <div className="absolute top-0 right-0 z-0">
+                      <div className="bg-[#83C044] w-40 h-8 absolute -top-4 -right-4 rounded-md"></div>
+                      <div className="bg-[#83C044] w-8 h-40 absolute -top-4 -right-4 rounded-md"></div>
+                    </div>
+                    
+                    {/* Bottom-right green L-shaped accent with rounded corners (behind) */}
+                    <div className="absolute bottom-0 left-0 z-0">
+                      <div className="bg-[#83C044] w-40 h-8 absolute -bottom-4 -left-4 rounded-md"></div>
+                      <div className="bg-[#83C044] w-8 h-40 absolute -bottom-4 -left-4 rounded-md"></div>
+                    </div>
+                    
+                    {/* Main image with rounded corners (in front) */}
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-lg shadow-xl z-10">
+                      <Image src={TeamPS} alt="IUTPS" width={1200} height={1200} />
+                    </div>
                   </div>
-                  <div className="absolute -bottom-4 -left-4 w-32 h-32 md:w-48 md:h-48 bg-[#83C044]/10 rounded-lg -z-10"></div>
-                  <div className="absolute -top-4 -right-4 w-32 h-32 md:w-48 md:h-48 bg-[#83C044]/10 rounded-lg -z-10"></div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
-        
+        </section>        
 
 
       </main>
