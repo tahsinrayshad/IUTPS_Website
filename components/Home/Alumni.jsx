@@ -13,7 +13,6 @@ export default function Alumni() {
       <section className="py-24 px-20">
         <div className=" mx-auto text-center">
           <div className="text-center mb-16">
-            <Badge className="mb-4">Testimonials</Badge>
             <h2 className="text-3xl text-[#83C044] font-bold tracking-tighter sm:text-4xl md:text-5xl">
               What Our Alumni Say
             </h2>

@@ -15,7 +15,6 @@ export default function Team() {
       <section id="team" className="py-24 px-20 flex justify-center items-center">
         <div className="">
           <div className="text-center mb-16">
-            <Badge className="mb-4">Our Team</Badge>
             <h2 className="text-3xl text-[#83C044] font-bold tracking-tighter sm:text-4xl md:text-5xl">
               Meet The Leadership
             </h2>

@@ -14,7 +14,6 @@ export default function Contact() {
         
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <div>
-              <Badge className="mb-4">Contact Us</Badge>
               <h2 className="text-3xl font-bold text-[#83C044] tracking-tighter sm:text-4xl md:text-5xl">
                 Get In Touch
               </h2>

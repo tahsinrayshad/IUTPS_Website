@@ -19,7 +19,6 @@ export default function About() {
                       {/* Left Column */}
                       <div className="w-full md:w-1/2 order-2 md:order-1">
                         <div className="max-w-[600px] mx-auto">
-                          <Badge className="mb-4">About Us</Badge>
                           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-[#83C044] mb-6">
                             About IUTPS
                           </h2>

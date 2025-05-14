@@ -18,7 +18,6 @@ export default function Event() {
               <section id="events" className="py-24 flex justify-center items-center px-20">
                 <div className=" text-center">
                   <div className="mb-16">
-                    <Badge className="mb-4 mx-auto">Upcoming</Badge>
                     <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-[#83C044] mb-6">
                       Events & Workshops
                     </h2>
