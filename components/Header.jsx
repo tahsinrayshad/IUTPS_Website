@@ -42,13 +42,13 @@ export default function Header() {
               Events
             </Link>
             <Link
-              href="#team"
+              href="/team"
               className="text-white hover:text-[#83C044] transition-all duration-300 transform hover:scale-105"
             >
               Team
             </Link>
             <Link
-              href="#contact"
+              href="/contact"
               className="text-white hover:text-[#83C044] transition-all duration-300 transform hover:scale-105"
             >
               Contact

@@ -26,7 +26,6 @@ return (
               >
                 <div className="">
                   <div className="text-center mb-16">
-                    <Badge className="mb-4 ">Our Work</Badge>
                     <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-[#83C044] mb-6">
                       Featured Gallery
                     </h2>
