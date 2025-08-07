@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <>
       {/* Navigation */}
-     <footer className="border-t py-12 flex justify-center items-center bg-[#0d0c1f] px-20">
+     <footer className="border-t py-12 flex justify-center items-center bg-black px-20">
           <div className="container">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
               <div className="md:col-span-1">

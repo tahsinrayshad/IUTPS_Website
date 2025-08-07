@@ -10,7 +10,7 @@ import Contact from "@/components/Home/Contact";
 
 export default function Home() {
   return (
-    <div className="min-h-90vh flex flex-col bg-[#12102A]">
+    <div className="min-h-90vh flex flex-col bg-black">
       {/* Navigation */}
 
       {/* Main Content */}

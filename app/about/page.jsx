@@ -17,7 +17,7 @@ export default function AboutUs() {
       {/* Main Content */}
       <main className="flex-1">
         {/* About Section */}
-        <section id="about" className="py-16 px-20  md:py-24 bg-[#12102A]">
+        <section id="about" className="py-16 px-20  md:py-24 bg-black">
           <div className=" mx-auto">
             <div className="min-h-[80vh] md:min-h-[100vh] flex flex-col md:flex-row gap-8 md:gap-16 items-center justify-center">
               {/* Left Column */}
@@ -47,7 +47,7 @@ export default function AboutUs() {
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 text-white mb-8">
-                    <div className="flex flex-col p-4 bg-[#1a1835] rounded-lg">
+                    <div className="flex flex-col p-4 bg-gray-900 rounded-lg">
                       <div className="flex items-center gap-2 mb-2">
                         <Users className="h-5 w-5 text-[#83C044]" />
                         <span className="font-medium">Community</span>
@@ -56,7 +56,7 @@ export default function AboutUs() {
                         Connect with like-minded photographers
                       </p>
                     </div>
-                    <div className="flex flex-col p-4 bg-[#1a1835] rounded-lg">
+                    <div className="flex flex-col p-4 bg-gray-900 rounded-lg">
                       <div className="flex items-center gap-2 mb-2">
                         <Award className="h-5 w-5 text-[#83C044]" />
                         <span className="font-medium">Excellence</span>
@@ -65,7 +65,7 @@ export default function AboutUs() {
                         Develop your skills and techniques
                       </p>
                     </div>
-                    <div className="flex flex-col p-4 bg-[#1a1835] rounded-lg">
+                    <div className="flex flex-col p-4 bg-gray-900 rounded-lg">
                       <div className="flex items-center gap-2 mb-2">
                         <Camera className="h-5 w-5 text-[#83C044]" />
                         <span className="font-medium">Creativity</span>
