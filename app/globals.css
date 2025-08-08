@@ -44,6 +44,164 @@
 }
 
 /* Custom Header Animations and Effects */
+/* Photography-themed Contact Section */
+.bg-gradient-radial {
+  background: radial-gradient(circle at center, var(--tw-gradient-stops));
+}
+
+/* Photography-themed Scrollbar */
+::-webkit-scrollbar {
+  width: 16px;
+  background: #000000;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+  border-radius: 8px;
+  position: relative;
+}
+
+::-webkit-scrollbar-track::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 2px;
+  right: 2px;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    #83C044 0px,
+    #83C044 4px,
+    transparent 4px,
+    transparent 8px,
+    #83C044 8px,
+    #83C044 12px,
+    transparent 12px,
+    transparent 16px
+  );
+  opacity: 0.3;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    #83C044 0%,
+    #6ea837 50%,
+    #5a8f2d 100%
+  );
+  border-radius: 8px;
+  border: 2px solid #000000;
+  position: relative;
+  box-shadow: 
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    0 2px 8px rgba(131, 192, 68, 0.3);
+}
+
+::-webkit-scrollbar-thumb::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    #9fd954 0%,
+    #83C044 50%,
+    #6ea837 100%
+  );
+  box-shadow: 
+    inset 0 2px 4px rgba(255, 255, 255, 0.3),
+    0 4px 12px rgba(131, 192, 68, 0.5);
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(
+    180deg,
+    #6ea837 0%,
+    #5a8f2d 50%,
+    #4a7526 100%
+  );
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.2),
+    0 2px 6px rgba(131, 192, 68, 0.4);
+}
+
+::-webkit-scrollbar-corner {
+  background: #000000;
+}
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #83C044 #000000;
+}
+
+/* Camera lens aperture effect on scroll */
+@keyframes aperture-glow {
+  0% { box-shadow: 0 0 0 0 rgba(131, 192, 68, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(131, 192, 68, 0.1); }
+  100% { box-shadow: 0 0 0 0 rgba(131, 192, 68, 0); }
+}
+
+::-webkit-scrollbar-thumb:hover::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 12px;
+  border: 1px solid rgba(131, 192, 68, 0.5);
+  animation: aperture-glow 2s infinite;
+}
+
+/* Film strip perforation holes effect */
+::-webkit-scrollbar-track::after {
+  content: '';
+  position: absolute;
+  left: 1px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 6px,
+    rgba(131, 192, 68, 0.4) 6px,
+    rgba(131, 192, 68, 0.4) 8px,
+    transparent 8px,
+    transparent 14px
+  );
+}
+
+/* Camera focus ring effect on scroll */
+body::-webkit-scrollbar-thumb {
+  position: relative;
+}
+
+body::-webkit-scrollbar-thumb::before {
+  content: '○';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 8px;
+  font-weight: bold;
+  text-shadow: 0 0 2px rgba(131, 192, 68, 0.8);
+}
+
+.bg-gradient-conic {
+  background: conic-gradient(var(--tw-gradient-stops));
+}
+
 @keyframes shimmer {
   0% {
     transform: translateX(-100%) skewX(-12deg);

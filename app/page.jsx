@@ -25,9 +25,6 @@ export default function Home() {
         {/* About Section */}
         <About/>
 
-        {/* Gallery Section */}
-        <Gallery/>
-
         {/* Events Section */}
         <Event/>
 

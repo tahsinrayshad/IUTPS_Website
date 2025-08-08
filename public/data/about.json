@@ -1,0 +1,32 @@
+{
+  "title": "About IUTPS",
+  "description": [
+    "The IUT Photographic Society (IUTPS) is a vibrant community of photography enthusiasts dedicated to exploring the art and science of photography.",
+    "Founded in 2010, we've been providing a platform for students to develop their skills, showcase their work, and connect with fellow photographers.",
+    "Our mission is to promote photography as both an art form and a means of documentation, while fostering creativity and technical excellence among our members."
+  ],
+  "features": [
+    {
+      "id": 1,
+      "icon": "Users",
+      "title": "Community",
+      "description": "Connect with like-minded photographers"
+    },
+    {
+      "id": 2,
+      "icon": "Award",
+      "title": "Excellence",
+      "description": "Develop your skills and techniques"
+    },
+    {
+      "id": 3,
+      "icon": "Camera",
+      "title": "Creativity",
+      "description": "Express yourself through photography"
+    }
+  ],
+  "button": {
+    "text": "Learn More",
+    "icon": "ArrowRight"
+  }
+}
