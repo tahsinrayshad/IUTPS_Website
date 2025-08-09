@@ -1,4 +1,6 @@
-import React from "react";
+"use client"
+
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -7,10 +9,49 @@ import { Users, Award, Camera } from "lucide-react";
 import { ArrowRight, Mail, Phone } from "lucide-react";
 
 import TeamPS from "@/public/teamps.jpg";
-import aboutData from "@/public/data/about.json";
+import aboutData from "@/data/about.json";
 
 
 export default function About() {
+    const [isInView, setIsInView] = useState(false);
+    const [isFocusing, setIsFocusing] = useState(false);
+    const aboutRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsInView(true);
+                    // Reset focusing state first, then start focusing effect after a brief delay
+                    setIsFocusing(false);
+                    setTimeout(() => {
+                        setIsFocusing(true);
+                    }, 1000);
+                } else {
+                    // Reset states when leaving the view with a small delay
+                    setTimeout(() => {
+                        setIsInView(false);
+                        setIsFocusing(false);
+                    }, 100);
+                }
+            },
+            {
+                threshold: 0.5, // Trigger when 50% of the section is visible
+                rootMargin: '0px' // Remove margin to work better in both directions
+            }
+        );
+
+        if (aboutRef.current) {
+            observer.observe(aboutRef.current);
+        }
+
+        return () => {
+            if (aboutRef.current) {
+                observer.unobserve(aboutRef.current);
+            }
+        };
+    }, []); // Removed isInView dependency
+
     // Icon mapping for dynamic rendering
     const iconMap = {
         Users: Users,
@@ -22,7 +63,7 @@ export default function About() {
     return (
         <>
         {/* About Section */}
-        <section id="about" className="px-20 py-16 md:py-24 bg-black relative overflow-hidden">
+        <section ref={aboutRef} id="about" className="px-20 py-16 md:py-24 bg-black relative overflow-hidden">
             {/* Photography-themed background elements */}
             <div className="absolute inset-0 opacity-15">
                 {/* Camera aperture rings */}
@@ -86,14 +127,46 @@ export default function About() {
                       {/* Right Column */}
                       <div className="w-full md:w-1/2 order-1 md:order-2 relative">
                         <div className="relative max-w-[700px] mx-auto">
-                          {/* Enhanced Camera lens rings behind the image */}
-                          <div className="absolute inset-0 rounded-full border-4 border-[#83C044]/30 scale-110 shadow-xl shadow-[#83C044]/15 pointer-events-none"></div>
-                          <div className="absolute inset-0 rounded-full border-3 border-[#83C044]/35 scale-105 shadow-lg shadow-[#83C044]/10 pointer-events-none"></div>
-                          <div className="absolute inset-0 rounded-full border-2 border-[#83C044]/40 scale-100 pointer-events-none"></div>
+                          {/* Enhanced Camera lens rings behind the image - now animated with proper blur */}
+                          <div className={`absolute inset-0 rounded-full border-4 border-[#83C044]/30 shadow-xl shadow-[#83C044]/15 pointer-events-none transition-all duration-2000 ${
+                            isFocusing ? 'scale-105 border-[#83C044]/60 shadow-[#83C044]/30 blur-[1px]' : 'scale-110 border-[#83C044]/30 shadow-[#83C044]/15 blur-sm'
+                          }`}></div>
+                          <div className={`absolute inset-0 rounded-full border-3 border-[#83C044]/35 shadow-lg shadow-[#83C044]/10 pointer-events-none transition-all duration-1800 delay-200 ${
+                            isFocusing ? 'scale-102 border-[#83C044]/70 shadow-[#83C044]/25 blur-[1px]' : 'scale-105 border-[#83C044]/35 shadow-[#83C044]/10 blur-sm'
+                          }`}></div>
+                          <div className={`absolute inset-0 rounded-full border-2 border-[#83C044]/40 pointer-events-none transition-all duration-1600 delay-400 ${
+                            isFocusing ? 'scale-100 border-[#83C044]/80 shadow-lg shadow-[#83C044]/20 blur-none' : 'scale-100 border-[#83C044]/40 blur-[2px]'
+                          }`}></div>
                           
                           <div className="relative">
+                            {/* Camera Focus Ring Animation */}
+                            <div className={`absolute inset-0 z-30 pointer-events-none transition-all duration-1000 ${
+                              isInView ? 'opacity-100' : 'opacity-0'
+                            }`}>
+                              {/* Multiple focus rings that animate in sequence */}
+                              <div className={`absolute inset-0 border-4 border-[#83C044] rounded-xl transition-all duration-2500 ${
+                                isFocusing ? 'scale-95 opacity-100' : 'scale-110 opacity-0'
+                              }`}></div>
+                              <div className={`absolute inset-2 border-2 border-white/60 rounded-lg transition-all duration-2000 delay-500 ${
+                                isFocusing ? 'scale-95 opacity-80' : 'scale-105 opacity-0'
+                              }`}></div>
+                              <div className={`absolute inset-4 border-2 border-[#83C044]/80 rounded-lg transition-all duration-1500 delay-1000 ${
+                                isFocusing ? 'scale-95 opacity-60' : 'scale-100 opacity-0'
+                              }`}></div>
+                              
+                              {/* Center focus dot */}
+                              <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-[#83C044] rounded-full transition-all duration-1000 delay-1500 ${
+                                isFocusing ? 'scale-100 opacity-100' : 'scale-50 opacity-0'
+                              }`}></div>
+                            </div>
+
                             {/* Main image with enhanced photography frame */}
-                            <div className="relative aspect-[4/3] overflow-hidden rounded-xl shadow-2xl z-10 group border-4 border-gray-800 hover:border-[#83C044]/50 transition-all duration-500">
+                            <div className={`relative aspect-[4/3] overflow-hidden rounded-xl shadow-2xl z-10 group border-4 border-[#83C044]/30 hover:border-[#83C044]/70 transition-all duration-500 ${
+                              isInView ? 'filter-none' : 'blur-sm'
+                            } ${
+                              isFocusing ? 'brightness-100 contrast-110' : 'brightness-90 contrast-95'
+                            }`}>
+                              
                               {/* Enhanced Film strip border effect */}
                               <div className="absolute inset-0 border-8 border-black rounded-xl z-20"></div>
                               <div className="absolute top-3 left-3 right-3 h-3 bg-gradient-to-r from-[#83C044]/60 via-[#83C044]/30 to-[#83C044]/60 rounded-full z-20 shadow-lg"></div>
@@ -114,7 +187,9 @@ export default function About() {
                                 alt="IUTPS"
                                 width={800}
                                 height={800}
-                                className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-700 brightness-90 group-hover:brightness-100"
+                                className={`object-cover w-full h-full group-hover:scale-110 transition-all duration-700 ${
+                                  isFocusing ? 'brightness-100' : 'brightness-90'
+                                } group-hover:brightness-100`}
                               />
                               
                               {/* Rounded vignette overlay - darker on 4 sides */}

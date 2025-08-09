@@ -198,6 +198,103 @@ body::-webkit-scrollbar-thumb::before {
   text-shadow: 0 0 2px rgba(131, 192, 68, 0.8);
 }
 
+/* Camera Focus Effects */
+@keyframes camera-focus {
+  0% {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 1;
+  }
+}
+
+@keyframes focus-flash {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes aperture-close {
+  0% {
+    clip-path: circle(70% at center);
+  }
+  50% {
+    clip-path: circle(20% at center);
+  }
+  100% {
+    clip-path: circle(70% at center);
+  }
+}
+
+.camera-focusing {
+  animation: camera-focus 2s ease-out;
+}
+
+.focus-flash {
+  animation: focus-flash 0.3s ease-out;
+}
+
+.aperture-effect {
+  animation: aperture-close 2.5s ease-in-out;
+}
+
+/* Camera click and image fade-in effects */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes cameraShutter {
+  0% { clip-path: circle(0% at center); }
+  50% { clip-path: circle(1% at center); }
+  100% { clip-path: circle(100% at center); }
+}
+
+/* 3D Camera Effects */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-gpu {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* Camera 3D hover effect */
+.camera-3d:hover {
+  transform: rotateY(-5deg) rotateX(2deg) translateZ(10px);
+  transition: transform 0.3s ease-out;
+}
+
+/* Lens reflection animation */
+@keyframes lensGlow {
+  0% { opacity: 0.2; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.2; }
+}
+
+.lens-glow {
+  animation: lensGlow 2s ease-in-out infinite;
+}
+
 .bg-gradient-conic {
   background: conic-gradient(var(--tw-gradient-stops));
 }
