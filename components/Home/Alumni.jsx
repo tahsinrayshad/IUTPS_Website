@@ -1,93 +1,169 @@
-import React from "react";
+"use client"
+
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import BTC from "@/public/btc.jpg";
-import PRONOIA from "@/public/pronoia.jpg";
-import ADDA from "@/public/adda.jpg";
+import { Camera, Aperture, Focus, ChevronLeft, ChevronRight } from "lucide-react";
+import alumniData from "@/data/alumni.json";
+import RABBI from "@/public/rabbi.jpg";
+import CHAYON from "@/public/chayon.jpg";
+import AFIF from "@/public/afif.jpg";
+import ZARIF from "@/public/zarif.jpg";
+import XENAN from "@/public/xenan.jpg";
+import XAMI from "@/public/xami.jpg";
+
 
 export default function Alumni() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsPerView, setItemsPerView] = useState(3);
+
+  // Auto-advance carousel
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => 
+        prev + itemsPerView >= alumniData.testimonials.length ? 0 : prev + 1
+      );
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [itemsPerView]);
+
+  // Responsive items per view
+  useEffect(() => {
+    const updateItemsPerView = () => {
+      if (window.innerWidth < 768) {
+        setItemsPerView(1);
+      } else if (window.innerWidth < 1024) {
+        setItemsPerView(2);
+      } else {
+        setItemsPerView(3);
+      }
+    };
+
+    updateItemsPerView();
+    window.addEventListener('resize', updateItemsPerView);
+    return () => window.removeEventListener('resize', updateItemsPerView);
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => 
+      prev + itemsPerView >= alumniData.testimonials.length ? 0 : prev + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => 
+      prev === 0 ? Math.max(0, alumniData.testimonials.length - itemsPerView) : prev - 1
+    );
+  };
+
   return (
     <>
-      {/* Testimonials Section */}
-      <section className="py-24 px-20">
-        <div className=" mx-auto text-center">
+      {/* Alumni Carousel Section */}
+      <section className="py-24 px-8 lg:px-20 bg-black">
+        <div className="max-w-7xl mx-auto">
+          {/* Simple header */}
           <div className="text-center mb-16">
-            <h2 className="text-3xl text-[#83C044] font-bold tracking-tighter sm:text-4xl md:text-5xl">
-              What Our Alumni Say
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+              {alumniData.title}
             </h2>
-            <p className="mt-4 text-white max-w-[600px] mx-auto">
-              Hear from our community about their experiences with IUTPS
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+              {alumniData.subtitle}
             </p>
+            <div className="w-24 h-1 bg-[#83C044] mx-auto mt-6 rounded-full"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                quote:
-                  "Joining IUTPS was one of the best decisions I made during my time at IUT. The workshops and community support helped me develop my skills tremendously.",
-                name: "Alex Johnson",
-                role: "Photography Student",
-                image: "1",
-              },
-              {
-                quote:
-                  "The mentorship and feedback I received from senior members helped me win my first photography competition. IUTPS is more than just a society, it's a family.",
-                name: "Sarah Chen",
-                role: "Portrait Photographer",
-                image: "2",
-              },
-              {
-                quote:
-                  "The exhibitions organized by IUTPS gave me the confidence to showcase my work. The technical workshops were invaluable for improving my photography skills.",
-                name: "Michael Lee",
-                role: "Landscape Photographer",
-                image: "3",
-              },
-            ].map((testimonial, index) => (
-              <Card
-                key={index}
-                className="bg-background border-none shadow-md text-center p-6 flex flex-col justify-between h-full"
+          {/* Carousel Container */}
+          <div className="relative">
+            {/* Navigation Buttons */}
+            <button
+              onClick={prevSlide}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-[#83C044] hover:bg-[#83C044]/80 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            
+            <button
+              onClick={nextSlide}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-[#83C044] hover:bg-[#83C044]/80 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+
+            {/* Carousel Track */}
+            <div className="overflow-hidden">
+              <div 
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{
+                  transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
+                }}
               >
-                <CardContent className="flex flex-col items-center justify-between h-full">
-                  <div className="mb-6 text-primary/30">
-                    <svg
-                      width="45"
-                      height="36"
-                      viewBox="0 0 45 36"
-                      fill="currentColor"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="mb-4"
+                {alumniData.testimonials.map((testimonial, index) => {
+                  const images = [RABBI, CHAYON, AFIF, ZARIF, XENAN, XAMI];
+
+                  return (
+                    <div
+                      key={index}
+                      className="flex-shrink-0 px-4"
+                      style={{ width: `${100 / itemsPerView}%` }}
                     >
-                      <path d="M13.4 36C9.4 36 6.2 34.6667 3.8 32C1.4 29.2 0.2 25.8667 0.2 22C0.2 18.4 1.13333 15.0667 3 12C4.86667 8.93333 7.4 6.4 10.6 4.4C13.8 2.4 17.4667 1.06667 21.6 0.4L23.8 5.2C20.6 6.13333 17.8667 7.33333 15.6 8.8C13.3333 10.2667 11.8 12 11 14C10.2 16 10.0667 18.1333 10.6 20.4C12.0667 19.7333 13.6667 19.4 15.4 19.4C17.9333 19.4 20.0667 20.2667 21.8 22C23.5333 23.7333 24.4 25.8667 24.4 28.4C24.4 31.0667 23.4667 33.2667 21.6 35C19.7333 35.6667 17.4 36 13.4 36ZM34.2 36C30.2 36 27 34.6667 24.6 32C22.2 29.2 21 25.8667 21 22C21 18.4 21.9333 15.0667 23.8 12C25.6667 8.93333 28.2 6.4 31.4 4.4C34.6 2.4 38.2667 1.06667 42.4 0.4L44.6 5.2C41.4 6.13333 38.6667 7.33333 36.4 8.8C34.1333 10.2667 32.6 12 31.8 14C31 16 30.8667 18.1333 31.4 20.4C32.8667 19.7333 34.4667 19.4 36.2 19.4C38.7333 19.4 40.8667 20.2667 42.6 22C44.3333 23.7333 45.2 25.8667 45.2 28.4C45.2 31.0667 44.2667 33.2667 42.4 35C40.5333 35.6667 38.2 36 34.2 36Z" />
-                    </svg>
-                    <p className="text-muted-foreground">{testimonial.quote}</p>
-                  </div>
-                  <div className="flex items-center justify-center gap-4 mt-4">
-                    <div className="relative h-12 w-12 rounded-full bg-gray-200 overflow-hidden">
-                      <Image
-                        src={
-                          testimonial.image === "1"
-                            ? BTC
-                            : testimonial.image === "2"
-                            ? PRONOIA
-                            : ADDA
-                        }
-                        alt={testimonial.name}
-                        fill
-                        className="object-cover"
-                      />
+                      <div className="group bg-gray-900 rounded-xl border border-gray-700 p-8 hover:shadow-xl hover:shadow-[#83C044]/20 hover:border-[#83C044]/50 transition-all duration-300 h-full">
+                        {/* Profile image */}
+                        <div className="flex justify-center mb-6">
+                          <div className="relative">
+                            <Image
+                              src={images[index]}
+                              alt={testimonial.name}
+                              width={80}
+                              height={80}
+                              className="rounded-full object-cover border-4 border-[#83C044]/20 group-hover:border-[#83C044] transition-colors duration-300"
+                            />
+                            <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-[#83C044] rounded-full flex items-center justify-center">
+                              <Camera className="w-3 h-3 text-white" />
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Quote */}
+                        <blockquote className="text-gray-300 text-center leading-relaxed mb-6 italic">
+                          "{testimonial.quote}"
+                        </blockquote>
+                        
+                        {/* Name and role */}
+                        <div className="text-center">
+                          <h4 className="font-semibold text-white mb-1">{testimonial.name}</h4>
+                          <p className="text-sm text-[#83C044] font-medium">{testimonial.role}</p>
+                        </div>
+                      </div>
                     </div>
-                    <div className="text-left">
-                      <h4 className="font-medium">{testimonial.name}</h4>
-                      <p className="text-sm text-muted-foreground">
-                        {testimonial.role}
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Carousel Indicators */}
+            <div className="flex justify-center mt-8 gap-2">
+              {Array.from({ length: Math.ceil(alumniData.testimonials.length / itemsPerView) }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index * itemsPerView)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    Math.floor(currentIndex / itemsPerView) === index
+                      ? 'bg-[#83C044] scale-125'
+                      : 'bg-gray-600 hover:bg-gray-500'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Simple bottom accent */}
+          <div className="mt-16 text-center">
+            <div className="inline-flex items-center gap-2 text-gray-400">
+              <div className="w-8 h-px bg-[#83C044]"></div>
+              <Camera className="w-4 h-4 text-[#83C044]" />
+              <div className="w-8 h-px bg-[#83C044]"></div>
+            </div>
           </div>
         </div>
       </section>

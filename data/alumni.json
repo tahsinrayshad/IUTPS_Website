@@ -1,0 +1,48 @@
+{
+  "title": "Through Our Lens",
+  "subtitle": "Capturing memories and testimonials from our IUTPS family",
+  "testimonials": [
+    {
+      "quote": "IUTPS taught me to see the world through a different lens. The workshops helped me frame my skills perfectly, and the community support was always in focus. Every shot I take today carries the spirit of what I learned here.",
+      "name": "M Abrar Faiyaz Rabbi",
+      "role": "Former President 2023",
+      "image": "1",
+      "cameraIcon": "aperture"
+    },
+    {
+      "quote": "The mentorship at IUTPS was like having the perfect exposure settings - it brought out the best in my photography. From composition techniques to post-processing magic, every moment was a learning opportunity that developed beautifully.",
+      "name": "Chayon Tasnim",
+      "role": "Former President 2022",
+      "image": "2",
+      "cameraIcon": "camera"
+    },
+    {
+      "quote": "IUTPS exhibitions gave me the platform to showcase my work like a gallery print. The technical workshops were my darkroom of knowledge, where every concept was processed to perfection. Now every landscape I capture tells a story.",
+      "name": "Shadman Afif",
+      "role": "Former President 2021",
+      "image": "3",
+      "cameraIcon": "lens"
+    },
+    {
+      "quote": "At IUTPS, I learned that photography is about patience and timing - just like waiting for the perfect golden hour. The macro photography sessions opened my eyes to details I never noticed, making me a more observant artist.",
+      "name": "Sagupth Alam Zarif",
+      "role": "Former President 2020",
+      "image": "4",
+      "cameraIcon": "focus"
+    },
+    {
+      "quote": "The street photography walks with IUTPS taught me to capture authentic moments. Every click became a story, every frame a memory. The society helped me develop my unique perspective and visual storytelling skills.",
+      "name": "Shahriar Mahbub Xenan",
+      "role": "Former President 2019",
+      "image": "5",
+      "cameraIcon": "aperture"
+    },
+    {
+      "quote": "IUTPS was where I discovered my passion for portrait photography. The lighting workshops and peer critiques sharpened my technical skills while the community fostered my creative growth. Every shot was a step towards mastery.",
+      "name": "Hasyn Mahtam Xami",
+      "role": "Former President 2018",
+      "image": "6",
+      "cameraIcon": "camera"
+    }
+  ]
+}

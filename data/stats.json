@@ -2,22 +2,22 @@
   "stats": [
     {
       "id": 1,
+      "number": "10000+",
+      "label": "Photographs"
+    },
+    {
+      "id": 2,
       "number": "200+",
       "label": "Members"
     },
     {
-      "id": 2,
+      "id": 3,
       "number": "50+",
       "label": "Events"
     },
     {
-      "id": 3,
-      "number": "15+",
-      "label": "Awards"
-    },
-    {
       "id": 4,
-      "number": "10+",
+      "number": "15+",
       "label": "Years"
     }
   ]
